@@ -1,5 +1,6 @@
+cloudpickle
 streamlit
 pandas
 numpy
 scikit-learn
-cloudpickle
+
