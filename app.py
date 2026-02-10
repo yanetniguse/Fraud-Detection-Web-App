@@ -5,9 +5,9 @@ import numpy as np
 import joblib
 from sklearn.ensemble import RandomForestClassifier  # example, use your model
 
-# your trained model
-model = your_trained_model
-features = list_of_features  # the feature list
+# Load model and feature list from files in your repo
+model = joblib.load("fraud_model.pkl")
+features = joblib.load("model_features.pkl")
 
 # save with joblib
 joblib.dump(model, "fraud_model.pkl")
@@ -174,5 +174,6 @@ if submitted:
     st.write(f"💱 Equivalent Transaction Amount: Ksh {user_input['AMOUNT']*usd_to_ksh:,.2f}")
     st.write(f"💱 Available Credit: Ksh {user_input['AVAIL_CRDT']*usd_to_ksh:,.2f}")
     st.write(f"💱 Credit Limit: Ksh {user_input['CREDIT_LIMIT']*usd_to_ksh:,.2f}")
+
 
 
