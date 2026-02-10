@@ -2,16 +2,16 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import cloudpickle
+import joblib
+from sklearn.ensemble import RandomForestClassifier  # example, use your model
 
-# -------------------------------
-# Load model and feature list safely
-# -------------------------------
-with open("fraud_model.pkl", "rb") as f:
-    model = cloudpickle.load(f)
+# your trained model
+model = your_trained_model
+features = list_of_features  # the feature list
 
-with open("model_features.pkl", "rb") as f:
-    features = cloudpickle.load(f)
+# save with joblib
+joblib.dump(model, "fraud_model.pkl")
+joblib.dump(features, "model_features.pkl")
 
 # -------------------------------
 # Key features for manual input & CSV output
@@ -174,4 +174,5 @@ if submitted:
     st.write(f"💱 Equivalent Transaction Amount: Ksh {user_input['AMOUNT']*usd_to_ksh:,.2f}")
     st.write(f"💱 Available Credit: Ksh {user_input['AVAIL_CRDT']*usd_to_ksh:,.2f}")
     st.write(f"💱 Credit Limit: Ksh {user_input['CREDIT_LIMIT']*usd_to_ksh:,.2f}")
+
 
