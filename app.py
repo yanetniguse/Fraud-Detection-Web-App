@@ -2,13 +2,16 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib
+import cloudpickle
 
 # -------------------------------
-# Load model and feature list
+# Load model and feature list safely
 # -------------------------------
-model = joblib.load("fraud_model.pkl")
-features = joblib.load("model_features.pkl")  # full list of features
+with open("fraud_model.pkl", "rb") as f:
+    model = cloudpickle.load(f)
+
+with open("model_features.pkl", "rb") as f:
+    features = cloudpickle.load(f)
 
 # -------------------------------
 # Key features for manual input & CSV output
@@ -171,3 +174,4 @@ if submitted:
     st.write(f"💱 Equivalent Transaction Amount: Ksh {user_input['AMOUNT']*usd_to_ksh:,.2f}")
     st.write(f"💱 Available Credit: Ksh {user_input['AVAIL_CRDT']*usd_to_ksh:,.2f}")
     st.write(f"💱 Credit Limit: Ksh {user_input['CREDIT_LIMIT']*usd_to_ksh:,.2f}")
+
