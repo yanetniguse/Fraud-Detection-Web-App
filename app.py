@@ -175,26 +175,6 @@ if submitted:
     st.write(f"💱 Available Credit: Ksh {user_input['AVAIL_CRDT']*usd_to_ksh:,.2f}")
     st.write(f"💱 Credit Limit: Ksh {user_input['CREDIT_LIMIT']*usd_to_ksh:,.2f}")
 
-import matplotlib.pyplot as plt
-
-# Example influence values for manual input
-factor_scores = {
-    "Card Not Present": 0.4,
-    "High Transaction / Credit Limit": 0.3,
-    "Quick Transaction": 0.1,
-    "Other factors": 0.2
-}
-
-st.subheader("📊 Fraud Influence Scale")
-
-factors = list(factor_scores.keys())
-scores = list(factor_scores.values())
-
-fig, ax = plt.subplots()
-ax.barh(factors, scores, color='orange')
-ax.set_xlabel("Influence (0-1 scale)")
-ax.set_xlim(0,1)
-st.pyplot(fig)
 
 
 
